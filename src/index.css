@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@import "./styles/effects.css";
+
+/* ------------------------------------------------------------------
+   Design tokens (Emotion Agency palette) → Tailwind theme
+   bg-ink, text-paper, border-line, text-violet, font-serif, px-gutter …
+------------------------------------------------------------------- */
+@theme {
+  --color-ink: #F5EFFF;          /* page background */
+  --color-ink-2: #F1F2F9;        /* muted surface */
+  --color-card: #FFFFFF;
+  --color-tint: #F3E8FF;         /* violet tint */
+  --color-paper: #2A1647;        /* text + headings */
+  --color-mist: #64698B;         /* muted text */
+  --color-stone: #A3A6C1;
+  --color-line: #E2E4F0;         /* borders, dividers */
+  --color-violet: #9047FF;       /* primary */
+  --color-violet-active: #7114FF;
+  --color-deep: #581C87;         /* small violet text */
+  --color-about: #E9E2F7;        /* About section background */
+  --color-ok: #319F43;
+  --color-ink-black: #0B0A10;
+
+  --font-serif: "Instrument Serif", "Didot", Georgia, serif;
+  --font-sans: "Jost", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --spacing-gutter: clamp(16px, 4vw, 64px);
+
+  --breakpoint-sm: 561px;
+  --breakpoint-md: 721px;
+  --breakpoint-lg: 901px;
+  --breakpoint-xl: 1001px;
+
+  --ease-expo: cubic-bezier(.16, 1, .3, 1);
+  --ease-soft: cubic-bezier(.2, .8, .2, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+/* small spaced capitals used for labels, nav links, dates, CTAs */
+@utility label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; color-scheme: light; }
+  body {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--color-violet); color: #fff; }
+  /* film grain */
+  body::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .035; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
